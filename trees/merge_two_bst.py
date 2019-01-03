@@ -112,3 +112,77 @@ def  mergeTrees(node1, node2):
     node = arrToBst(arr3, 0, len(arr3)-1)
     
     return node 
+
+'''
+Another approach:
+
+class Node:
+    def __init__(self, key): 
+        self.key = key  
+        self.left = None  
+        self.right = None
+
+def get_array(root,a):
+    
+    if root is None:
+        return 
+    get_array(root.left,a)
+    a.append(root.key)
+    get_array(root.right,a)
+
+def merge(a1,a2):
+    
+    n1, n2 = len(a1),len(a2)
+    n3 = n1+n2
+    a3 = [None]*n3
+    
+    i = 0
+    j = 0 
+    k = 0
+    while True:
+        if i==n1 or j==n2:
+            break
+        
+        if a1[i] < a2[j]:
+            temp = a1[i]
+            i += 1
+        else:
+            temp = a2[j]
+            j += 1
+        a3[k] = temp 
+        k+= 1
+            
+    while i < n1:
+        a3[k] = a1[i]
+        i+= 1
+        k+= 1
+    
+    while j < n2:
+        a3[k] = a2[j]
+        j+= 1
+        k+= 1
+        
+    return a3
+        
+def make_btree(a,start,end):
+    if start > end:
+        return None
+    
+    mid = (start+end)/2
+    root = Node(a[mid])
+    
+    root.left = make_btree(a,start,mid - 1)
+    root.right = make_btree(a,mid+1,end)
+    
+    return root 
+    
+# Complete this function and return root of the BST
+def mergeTwoBSTs(root1, root2):
+    
+    a1,a2 = [],[]
+    get_array(root1,a1)
+    get_array(root2,a2)
+    a3 = merge(a1,a2)
+    
+    return make_btree(a3,0,len(a3)-1)
+'''
