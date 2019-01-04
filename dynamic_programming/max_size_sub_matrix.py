@@ -1,4 +1,41 @@
 '''
+Largest sub-square matrix with all 1s
+
+Problem Statement:
+This problem is yet to be reviewed, hence might contain minor typos, but still good enough to start practicing!
+
+Given a 2D matrix mat of integers with n rows and m columns. All the elements in the matrix mat are either 0 or 1. Your task is to determine the largest sub-square size of the matrix that contains only 1s.
+
+Input Format:
+First and second parameter of the largest_sub_square_matrix function, is n and m, depicting the number of rows and columns in the matrix. The third and last parameter of the function is the 2D matrix mat.
+
+Output Format:
+Return an integer denoting the largest size of sub-square matrix that contains only 1s in the input 2D matrix.
+
+Constraints:
+1 <= n,m <= 1000
+0 <= elements in matrix <= 1
+
+Sample Test Case:
+
+Sample Input:
+mat = [ [1,0,0] , [0,1,1] , [0,1,1] ]
+n = 3
+m = 3
+
+Sample Output:
+2
+
+Explanation:
+The given matrix is represented below:
+1 0 0
+0 1 1
+0 1 1
+Here, we can easily infer that the 1s in bold form a sub-square matrix and is of the largest size(2*2) in the matrix such that all the elements in the sub-matrix are 1. Hence, the answer is 2.
+
+'''
+
+'''
 Given a binary matrix, find out the maximum size square sub-matrix with all 1s.
 Given this matrix:
    0  1  1  0  1 
