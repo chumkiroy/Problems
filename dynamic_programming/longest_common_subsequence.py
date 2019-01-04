@@ -10,6 +10,10 @@ LCS for input Sequences “ABCDGH” and “AEDFHR” is “ADH” of length 3.
 LCS for input Sequences “AGGTAB” and “GXTXAYB” is “GTAB” of length 4.
 
 Return empty string if there is no such common subsequence.
+
+NOTE:
+http://www.geeksforgeeks.org/printing-longest-common-subsequence/
+
 '''
 
 def longestCommonSubsequence(a,b):
