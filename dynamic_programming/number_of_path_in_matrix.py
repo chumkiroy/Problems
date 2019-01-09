@@ -77,6 +77,57 @@ There is 1 possible path from cell (0, 0) to cell (1, 1).
 '''
 
 def numberOfPaths(a):
+    rows = len(a)
+    cols = len(a[0])
+    dp = [[0] * (cols + 1) for _ in range(rows + 1)]
+
+    
+    for r in range(rows - 1, -1, -1):
+        for c in range(cols - 1, -1, -1):
+            if r==rows - 1 and c==cols - 1:
+                dp[rows - 1][cols - 1] = 1
+            elif a[r][c]==0:
+                dp[r][c]=0
+            else:
+                dp[r][c] = dp[r + 1][c] + dp[r][c + 1]
+
+    return dp[0][0] % (10**9+7)
+
+'''
+#Uses half of the memory
+
+def numberOfPaths(a):
+    m = len(a)
+    n = len(a[0])
+    table = [[0 for _ in range(n)] for _ in range(m)]
+    table[-1][-1] = a[-1][-1]
+    #Fill up last row and last column
+    for i in range(m-2, -1, -1):
+        if a[i][-1] == 0:
+            table[i][-1] = 0
+        else:
+            table[i][-1] = table[i+1][-1]
+    for i in range(n-2, -1, -1):
+        if a[-1][i] == 0:
+            table[-1][i] = 0
+        else:
+            table[-1][i] = table[-1][i+1]
+    #Fill up rest of table
+    for i in range(m-2, -1, -1):
+        for j in range(n-2, -1, -1):
+            if a[i][j] == 0:
+                table[i][j] = 0
+            else:
+                table[i][j] = table[i][j+1] + table[i+1][j]
+    return (table[0][0] % (pow(10,9) + 7))
+'''
+a = [[1,1,1,1], [1,1,1,1], [1,1,1,1]]
+print numberOfPaths(a)
+
+'''
+# does not work for all the test cases
+
+def numberOfPaths(a):
     if not a or len(a) == 0:
         return 0
         
@@ -103,6 +154,4 @@ def numberOfPaths(a):
                 dp[i][j] = dp[i-1][j] + dp[i][j-1]
     
     return dp[-1][-1]
-
-a = [[1,1,1,1], [1,1,1,1], [1,1,1,1]]
-print numberOfPaths(a)
+'''
