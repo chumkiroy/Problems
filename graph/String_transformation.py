@@ -112,3 +112,134 @@ words = ["cat", "hat", "bad", "had"]
 start = 'bat'
 stop = 'had'
 print string_transformation(words, start, stop)
+
+'''
+# Alternative solution:
+
+from collections import deque
+
+def string_transformation(words, start, stop):
+    if len(words) < len(start):
+        return string_transformation_small_n(words, start, stop)
+    else:
+        return string_transformation_small_k(words, start, stop)
+
+def string_transformation_small_k(words, start, stop):
+    char_sets = []
+    for letter in start:
+        char_sets.append(set())
+    words.extend([start, stop])
+    word_dictionary = set()
+    for word in words:
+        word_dictionary.add(word)
+        for i in range(len(word)):
+            char_sets[i].add(word[i])
+    parent_map = {}
+    if start != stop:
+        parent_map[start] = None
+    queue = deque([])
+    queue.append(start)
+    end = None
+    while queue:
+        current_word = queue.popleft()
+        charArr = list(current_word)
+        for i in range(len(charArr)):
+            if end is not None:
+                break
+            for letter in char_sets[i]:
+                if letter != charArr[i]:
+                    charArr[i] = letter
+                    next_word = "".join(charArr)
+                    if next_word in word_dictionary and next_word not in parent_map:
+                        queue.append(next_word)
+                        parent_map[next_word] = current_word
+                    if next_word == stop:
+                        end = next_word
+                        break
+                    charArr[i] = current_word[i]
+    path = []
+    seen = set()
+    current = end
+    while current is not None:
+        path.append(current)
+        if current in seen:
+            break
+        seen.add(current)
+        current = parent_map[current]
+    path.reverse()
+    if path:
+        return path
+    return ["-1"]
+
+
+def string_transformation_small_n(words, start, stop):
+    word_dictionary = {start:set(), stop:set()}
+    for word in words:
+        # add each word to the dictionary
+        word_dictionary[word] = set()
+    for a in word_dictionary:
+        for b in word_dictionary:
+            if a != b:
+                if one_away(a,b):
+                    word_dictionary[a].add(b)
+    # do me some BFS
+    parent_map = {}
+    queue = deque([])
+    queue.append(start)
+    end = None
+    if start != stop:
+        parent_map = {start: None}
+    while queue:
+        current_word = queue.popleft()
+        for neighbor in word_dictionary[current_word]:
+            if neighbor not in parent_map:
+                parent_map[neighbor] = current_word
+                if neighbor == stop:
+                    end = neighbor
+                queue.append(neighbor)
+    path = []
+    seen = set()
+    current = end
+    while current is not None:
+        path.append(current)
+        if current in seen:
+            break
+        seen.add(current)
+        current = parent_map[current]
+    path.reverse()
+    if path:
+        return path
+    return ["-1"]
+
+
+def one_away(a,b):
+    count = 0
+    for i in range(len(a)):
+        if a[i] != b[i]:
+            count += 1
+        if count > 1:
+            return False
+    return True
+
+
+if __name__ == "__main__":
+    f = sys.stdout
+
+    words_size = int(input())
+
+    words = []
+    for _ in range(words_size):
+        words_item = input()
+        words.append(words_item)
+
+
+    start = input()
+
+    stop = input()
+
+    res = string_transformation(words, start, stop)
+
+    f.write('\n'.join(res))
+    f.write('\n')
+    f.close()
+'''
