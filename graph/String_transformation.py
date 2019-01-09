@@ -243,3 +243,37 @@ if __name__ == "__main__":
     f.write('\n')
     f.close()
 '''
+
+'''
+Check with the following failed test case: (sometimes failing)
+---------------------------------------------------------------
+Input 012:
+8
+log
+hot
+hat
+sag
+bag
+dot
+hog
+rat
+cat
+dog
+
+
+Your Output 012:
+cat
+hat
+hot
+hog
+log
+dog
+
+
+Expected Output: 012:
+cat
+hat
+hot
+dot
+dog
+'''
