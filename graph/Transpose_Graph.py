@@ -79,3 +79,32 @@ def dfs(node, transpose_graph):
         # Now we add neighbours(transpose_graph[node.val]) to node (transpose_graph[neighbour.val])
         transpose_graph[neighbour.val].neighbours.append(transpose_graph[node.val])
 
+'''
+# Another approach
+
+def build_other_graph(node):
+    # creating empty dictionary
+    transpose_graph = {}
+    # dfs function to traverse graph with argument given node nad transpose_graph as input
+    dfs(node, transpose_graph)
+    return transpose_graph[1]
+    
+def dfs(node, transpose_graph):
+    # creating the temperory node with Node class attribute
+    temp_node = Node()
+    # adding the given node value to temperory node value
+    temp_node.val = node.val
+    # storing the temp_node into a key(node.val) of the new transpose_graph
+    # so transpose_graph[node.val] is node in new graph
+    transpose_graph[node.val] = temp_node
+    #print(transpose_graph[node.val].val,temp_node.val)
+    
+    # we loop for the neighbours of given node
+    for neighbour in node.neighbours:
+        # if the neighbours value(node, according to defination above) not present in graph 
+        if neighbour.val not in transpose_graph:
+            # then we call DFS)
+            dfs(neighbour, transpose_graph)
+        # Now we add neighbours(transpose_graph[node.val]) to node (transpose_graph[neighbour.val])
+        transpose_graph[neighbour.val].neighbours.append(transpose_graph[node.val])
+'''
