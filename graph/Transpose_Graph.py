@@ -108,3 +108,30 @@ def dfs(node, transpose_graph):
         # Now we add neighbours(transpose_graph[node.val]) to node (transpose_graph[neighbour.val])
         transpose_graph[neighbour.val].neighbours.append(transpose_graph[node.val])
 '''
+
+'''
+Sample Test:
+
+
+Input 000:
+
+3 3
+1 2
+2 3
+3 1
+
+Your Output 000:
+
+Correct Answer!
+
+Expected Output: 000:
+
+Correct Answer!
+
+Stderr 000:
+
+In returned graph: 
+Neighbours of node 1 = [3]
+Neighbours of node 3 = [2]
+Neighbours of node 2 = [1]
+'''
