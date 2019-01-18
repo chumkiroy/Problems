@@ -1,0 +1,32 @@
+Given an array of positive integers, print only those subsets that have a certain sum. (If the values can be negative, this is a simple change in the base case, where you print the said subset only if it has the right sum)
+
+
+// REMINDER: overall pseudocode
+void printSubsetsMain(int[] inp, int k) 
+    out: int  array of size inp.length
+    // inp starts at 0. out starts at 0. Sum so far is 0
+    return  printSubsets(inp, 0, out, 0, 0, k)
+
+void printSubsets(int[] inp, int i 
+                  int[] out, int out_size, 
+                  int sum_so_far, int k)
+    
+    // If we have reached the sum, no point growing 
+    // this subset further. Positive integers only.
+    if (sum_so_far == k)
+         print output[0...out_size-1]
+         return
+    // Either we have exceeded the sum OR
+    // We have not reached the sum but run out of elements.     
+    if (sum_so_far > k || i == array.length)
+         return
+    
+    // If our sum_so_far is < k, lets grow this thing   
+    // Case one: Do not pick inp[i]
+    printSubsets(inp, i + 1, out, out_size, sum_so_far, k)
+    
+    // Case two: Pick inp[i] (update output AND sum_so_far)
+    out[out_size] = inp[i] 
+    printSubsets(inp, i + 1, out, out_size + 1, 
+                 sum_so_far + inp[i], k)
+

@@ -1,0 +1,29 @@
+Question:
+
+Assume that the input is an array of characters. Print any one permutation that is also a word in the dictionary. Assume that you have two library functions you can use.
+
+    bool  ValidWord(char array a) returns true if and only if the string a is a dictionary word.
+    bool ValidWordPrefix(char array a, int a_size) returns true if and only if a[0...a_size-1] is a prefix of at least one word in the dictionary.
+
+
+
+Answer:
+
+bool printPermutationsMain(char[] inp) // original problem
+    return  printPermutations(inp, 0)
+
+bool printPermutations(char[] array, int i) // recursive version
+    if (i == array.length - 1) 
+      if (IsValidDictionaryWord(array))
+         PrintToOutput and Return TRUE
+      else
+         Return FALSE
+    
+    for (j = i; j < array.length; ++j) {
+        swap(array, i, j);
+        if (ValidWordPrefix(array, i+1))
+          if (printPermutations(array, i + 1))
+            return TRUE
+        swap(array, i, j)
+    
+    return FALSE

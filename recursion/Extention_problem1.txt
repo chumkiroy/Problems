@@ -1,0 +1,28 @@
+Question:
+
+Assume that the input is an array of size 'n' where 'n' is an even number. Additionally, assume that  half the integers are even and the other half are odd. Print only those permutations where odd and even integers alternate, starting with odd. 
+
+Answer:
+
+void PrintPermutations(int inp[], int i)
+   // A good exploration to do for this particular
+   // question is: is there a difference between
+   // checking i against inp.length vs inp.length-1
+   if (i == inp.length - 1)
+      PrettyPrintToLine(inp) and return
+   for (j = i; j < inp.length; j++) 
+       // We want to put inp[j] at position i
+       // Lets check if that makes sense
+       if (ValueOkAtPosition(inp[j], i))
+           swap (inp, i , j)
+           PrintPermutations(inp, i+1)
+           swap(inp, i, j)
+
+// Odd ints are OK for even numbered indices (0, 2,...)
+// Even ints are OK for odd indices (1, 3, …)
+bool ValueOkAtPosition(int v, int i)
+  if ( (i % 2 == 0 && v % 2 == 1) ||
+       (i % 2 == 1 && v % 2 == 0) )
+     return TRUE
+  return FALSE
+
