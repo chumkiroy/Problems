@@ -58,7 +58,7 @@ As we can easily visualise that input binary tree and output binary tree are mir
 #         self.data = item
 #         self.left = None
 #         self.right = None
-
+sys.setrecursionlimit(100001)
 def mirror_image(root):
     if root == None:
         return 
@@ -74,3 +74,17 @@ def mirror_image(root):
         if cur_node.right != None:
             queue.append(cur_node.right)
 
+'''
+from collections import deque
+def mirror_image(root):
+    if not root: return
+    q = deque()
+    q.append(root)
+    while q:
+        node = q.popleft()
+        node.left,node.right=node.right,node.left
+        if node.right : q.append(node.right)
+        if node.left : q.append(node.left)
+        
+    return
+'''
