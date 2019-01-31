@@ -86,4 +86,31 @@ def dfs(inorder, preorder, preorder_index, inorder_start, inorder_end, inorder_i
     
     return root
 
+'''
 
+sys.setrecursionlimit(50000000)
+def constructBinaryTree(inorder, preorder):
+    # Write your code here
+    
+    # to help make it more efficient
+    inorder_index = {}
+    for i in range(len(inorder)):
+        inorder_index[inorder[i]] = i
+    return dfs(inorder, preorder, [0], 0, len(inorder)-1, inorder_index)
+    
+def dfs(inorder, preorder, preorder_index, inorder_start, inorder_end, inorder_index):
+    if inorder_start > inorder_end:
+        return
+    if preorder_index[0] >= len(preorder):
+        return
+    
+    found_index = inorder_index[preorder[preorder_index[0]]]
+    
+    
+    root = TreeNode(preorder[preorder_index[0]])
+    preorder_index[0] +=1
+    root.left = dfs(inorder, preorder, preorder_index, inorder_start, found_index-1, inorder_index)
+    root.right = dfs(inorder, preorder, preorder_index, found_index+1, inorder_end, inorder_index)
+    
+    return root
+'''
