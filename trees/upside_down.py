@@ -93,5 +93,29 @@ http://tiancao.me/Leetcode-Unlocked/LeetCode%20Locked/c1.13.html
 
 '''
 
-def upside_down(node):
-	pass
+sys.setrecursionlimit(100001)
+
+def flip_upside_down_helper(root, new_root):
+    if not root:
+        return
+    
+    flip_upside_down_helper(root.left_ptr, new_root)
+    
+    if root.left_ptr or root.right_ptr: # one check may be ok as each node can have either 0 or 2 childrens
+        root.left_ptr.left_ptr = root.right_ptr
+        root.right_ptr = None
+        root.left_ptr.right_ptr = root
+        if not new_root[0]:
+            new_root[0] = root.left_ptr
+        root.left_ptr = None
+        
+def flipUpsideDown(root): #main
+    if not root:
+        return root
+    if not root.left_ptr and not root.right_ptr:
+        return root
+        
+    new_root = [None]
+    flip_upside_down_helper(root, new_root)
+
+    return new_root[0]
