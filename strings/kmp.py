@@ -136,12 +136,26 @@ def KMP(s, p):
     return res
     
 def build_prefix(prefix,p):
+	m = len(p)
+	i = 0
+	for j in range(1, m):
+		if p[j] == p[i]:
+			i += 1
+			j += 1
+		else:
+			if i == 0:
+				lps[j] = 0
+				j += 1
+			else:
+				i = lps[i-1]
+	   '''
     m = len(p)
     for j in range(1,m):
         if p[j] == p[prefix[j-1]]:
             prefix[j] = prefix[j-1]+1
         elif p[j] == p[0]:
             prefix[j] = 1
+    '''
 
 
 s = "Ourbusinessisourbusinessnoneofyourbusiness"
