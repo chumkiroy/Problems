@@ -45,7 +45,19 @@ Explanation:
 Similarly for remaining generate numeronyms.
 
 '''
+def numeronyms(word):
+	res = []
+	n = len(word)
+	for count in range(2, n-1):
+		for i in range(1, n+count):
+			res.append(word[:i] + str(count) + word[i+count:])
 
+	return res
+
+print numeronyms("aaaaa")
+
+
+'''
 def generateCombinations(inputString, startIndex, endIndex, isFirst, res):
     #if isFirst:
         #res.append(inputString)
@@ -84,3 +96,4 @@ def neuronyms(word):
     return res
 
 print neuronyms("aaaaa")
+'''
