@@ -14,5 +14,34 @@ https://www.geeksforgeeks.org/print-string-wave-pattern/
 
 '''
 
-def print_string_sinusoidally(s):
-	pass
+def print_string_sinusoidally(s, k):
+	if k == 1:
+		print s
+		return
+
+	l = len(s)
+	a = [[' ' for _ in range(l)] for _ in range(l)]
+	row = 0
+	for col in range(l):
+		a[row][col] = s[col]
+
+		if row == k-1:
+			down = False
+		elif row == 0:
+			down = True
+		
+		if down:
+			row += 1
+		else:
+			row -= 1	
+
+	#Print the matrix
+	for r in range(k):
+		for c in range(l):
+			print a[r][c],
+		print	
+
+s = 'GeeksforGeeks'
+k = 4
+
+print_string_sinusoidally(s, k)
