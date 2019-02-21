@@ -73,3 +73,35 @@ def  BSTtoLL(node):
     nodeLeft = append(nodeLeft, nodeRight)
     
     return nodeLeft
+
+'''
+head = None
+prev = None
+
+def treeToList(node):
+    global head
+    global prev
+    
+    if node == None:
+        return
+    treeToList(node.left)
+    
+    node.left = prev
+    
+    if prev != None:
+        prev.right = node
+    else:
+        head = node
+        
+    savedRightNode = node.right
+    
+    head.left = node
+    node.right = head
+    
+    prev = node
+    treeToList(savedRightNode)
+
+def BSTtoLL(root):
+    treeToList(root)
+    return head
+'''
