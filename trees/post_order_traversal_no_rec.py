@@ -41,5 +41,18 @@ https://leetcode.com/problems/binary-tree-postorder-traversal/
 
 '''
 
-def  postorderTraversal(root):
-	pass #CODE
+def postorderTraversal(root):
+    if not root:
+        return
+    res = []
+    stack = [root]
+    while stack:
+        node = stack.pop()
+        res.append(str(node.val))
+        if node and node.left_ptr:
+            stack.append(node.left_ptr)
+        if node and node.right_ptr:
+            stack.append(node.right_ptr)
+    ans = ' '.join(res[::-1])
+    print(ans)
+    return ans
