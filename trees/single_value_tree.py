@@ -39,5 +39,22 @@ https://www.geeksforgeeks.org/find-count-of-singly-subtrees/
 
 '''
 
-def  findSingleValueTrees(node):
-	pass # CODE
+res = 0
+def findSingleValueTrees(root):
+    global res
+    def helper(root):
+        global res
+        if not root:
+            return True
+            
+        left = helper(root.left_ptr)
+        right = helper(root.right_ptr)
+        
+        if left and right:
+            if (not root.left_ptr or root.val == root.left_ptr.val) and (not root.right_ptr or root.val == root.right_ptr.val):
+                res += 1
+                return True
+        return False
+    
+    helper(root)
+    return res
