@@ -43,5 +43,12 @@ http://crackprogramming.blogspot.com/2012/11/make-copy-of-binary-tree-given-poin
 
 '''
 
-def cloneTree(node):
-	pass #CODE
+def cloneTree(root):
+    if not root:
+        return None
+    node = TreeNode(root.val)
+    node.left_ptr = cloneTree(root.left_ptr)
+    node.right_ptr = cloneTree(root.right_ptr)
+    
+    return node
+
